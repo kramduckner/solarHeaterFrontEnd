@@ -1,3 +1,5 @@
 <h1>
-  {{title}}
+    <button-menu></button-menu>
+    <app-graph *ngIf="isDataAvailable" [readingList]="readings"></app-graph>
+    <graph-filters-menu></graph-filters-menu>
 </h1>
