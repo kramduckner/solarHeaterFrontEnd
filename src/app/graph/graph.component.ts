@@ -18,7 +18,7 @@ export class GraphComponent implements OnInit, OnChanges {
     airTemps:Array<String>;
 
     ngOnChanges(changes: SimpleChanges){
-        // idon't know if this actually needs to happen
+
         var temps = [];
         var times = [];
         var airTemps = [];
@@ -28,8 +28,9 @@ export class GraphComponent implements OnInit, OnChanges {
              if (this.readingList){
                  this.readingList.forEach(function(reading){
                         temps.push((reading.heaterTemp * 1.8)+32);
-                        times.push(moment(reading.date).format('LT') + ' ' + reading.weather.weather[0].description);
+                        times.push(moment(reading.dateTime).format('lll') + ' ' + reading.weather.weather[0].description);
                         airTemps.push((reading.airTemp * 1.8)+32);
+
              }, this);
 
                 this.lineChartData[0] = {data:temps, label:"Heater Temperature (F)"};
@@ -43,7 +44,7 @@ export class GraphComponent implements OnInit, OnChanges {
     public lineChartLabels:Array<any> = [];
 
   public lineChartOptions:any = {
-    responsive: true
+    responsive: true,
   };
   public lineChartColors:Array<any> = [
     { // grey
@@ -79,12 +80,16 @@ export class GraphComponent implements OnInit, OnChanges {
     console.log(e);
   }
 
-    search():void{
-        console.log('blah')
+    public chartHovered(e:any):void {
+        console.log(e);
     }
 
   constructor(public graphService:GraphService, public querySerivce:QueryService){
+        this.graphService.graphStream.subscribe(value=>
 
+            console.log(value)
+
+        )
     }
 
   ngOnInit() {

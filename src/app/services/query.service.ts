@@ -5,24 +5,23 @@ import * as moment from 'moment';
 
 @Injectable()
 export class QueryService {
+
     public startAt: Subject<any> = new Subject<any>();
+    public endAt: Subject<any> = new Subject<any>();
     public query: any;
 
-    private mapView(view:String){
-        if (view === "day"){
-            return moment().startOf('day').format();
-        } else if (view === "week"){
-            return moment().startOf('week').format();
+    public setGraphRange(start, end){
+        if (start){
+            this.startAt.next({
+                key:"date",
+                value: start
+            });
         } else {
-            return moment().startOf('month').format();
+            this.endAt.next({
+                key:"date",
+                value: end
+            });
         }
-    }
-
-    public getView(view){
-        this.startAt.next({
-            key:"date",
-            value: this.mapView(view)
-        });
     }
 
     constructor(public db:AngularFireDatabase){

@@ -1,3 +1,1 @@
-<button (click)="clicked('day')" class="button">Day</button>
-<button (click)="clicked('week')" class="button">Week</button>
-<button (click)="clicked('month')" class="button">Month</button>
+<view-button *ngFor="let v of views" [view]="v" ></view-button>

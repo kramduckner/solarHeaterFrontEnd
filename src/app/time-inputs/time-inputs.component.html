@@ -1,0 +1,3 @@
+<date-time-input class="dateTimeInput" dateTime="start"></date-time-input>
+<button *ngIf="!endDateTime" (click)="endDateTimeToggle()" class="endTimeBtn btn btn-secondary">Add End Time</button>
+<date-time-input class="dateTimeInput" *ngIf="endDateTime" dateTime="end"></date-time-input>

@@ -1,12 +1,6 @@
-//TODO: rename this to viewSelectionMenu
+//TODO: rename this to viewButtonMenu
 
 import { Component, OnInit} from '@angular/core';
-import { GraphService } from "../services/graph.service";
-import { GraphModel } from "../models/graph.model";
-import { QueryService } from "../services/query.service";
-import { FiltersService } from "../services/filters.service";
-import * as moment from 'moment';
-
 
 @Component({
   selector: 'button-menu',
@@ -16,16 +10,10 @@ import * as moment from 'moment';
 
 export class ButtonMenuComponent implements OnInit {
 
-    clicked(view):void {
-        this.queryService.getView(view);
+    public views:Array<String> = ["Day","Week","Month"];
 
-    }
+   constructor() {}
 
-  constructor(public graphService:GraphService, public queryService:QueryService, public filtersService:FiltersService) {
-        this.queryService.query.subscribe( readings => {
-
-        });
-  }
  ngOnInit(){}
 
 }

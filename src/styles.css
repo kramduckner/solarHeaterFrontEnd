@@ -1,2 +1,45 @@
-@import "../node_modules/skeleton-css/css/skeleton.css"
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 /* You can add global styles to this file, and also import other style files */
+.dashboardFiltersForm{
+
+    display:flex;
+    justify-content: space-around;
+}
+
+.datePickerInput{
+    width:120px !important;
+}
+
+.timePickerWrapper{
+    margin-left:5px;
+}
+
+.appTitle{
+    color:#777 !important;
+    font-size:2.25rem;
+}
+
+.dateTimeWrapper{
+    display:flex;
+}
+
+.datePickerWrapper{
+    display:flex;
+    align-items:center;
+    margin-left:5px;
+}
+
+.timeInputs{
+    display:flex;
+    align-items:center;
+}
+
+.dateTimeInput{
+    display:flex;
+}
+
+.endTimeBtn{
+    margin-left:30px;
+}

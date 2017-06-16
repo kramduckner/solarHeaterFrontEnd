@@ -1,0 +1,9 @@
+<label for="dateTime">{{dateTime}}</label>
+<ngb-timepicker class="timePickerWrapper" (ngModelChange)="dateTimeChanged($event)" [(ngModel)]="time"></ngb-timepicker>
+<div class="datePickerWrapper">
+    <input class="datePickerInput form-control" (ngModelChange)="dateTimeChanged($event)" placeholder="yyyy-mm-dd"
+        name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+    <div class="input-group-addon" (click)="d.toggle()" >
+    <img src="https://ng-bootstrap.github.io/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+    </div>
+</div>

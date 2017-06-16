@@ -1,5 +1,13 @@
-<h1>
-    <button-menu></button-menu>
+<div>
+    <nav class="navbar navbar-light bg-faded">
+        <div class="navbar-brand appTitle">Solar Heater Dashboard</div>
+    </nav>
+    <nav class="navbar navbar-light bg-faded">
+  <div class="form-inline dashboardFiltersForm">
+        <button-menu></button-menu>
+        <graph-filters-menu></graph-filters-menu>
+        <time-inputs class="timeInputs"></time-inputs>
+  </div>
+</nav>
     <app-graph *ngIf="isDataAvailable" [readingList]="readings"></app-graph>
-    <graph-filters-menu></graph-filters-menu>
-</h1>
+</div>

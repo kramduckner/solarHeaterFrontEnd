@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
-import { MomentModule } from 'angular2-moment'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { GraphComponent } from './graph/graph.component';
@@ -18,6 +19,10 @@ import { FiltersService } from './services/filters.service';
 import { GraphModel} from './models/graph.model';
 import { ButtonMenuComponent } from './button-menu/button-menu.component';
 import { GraphFiltersMenuComponent } from './graph-filters-menu/graph-filters-menu.component';
+import { TimeInputsComponent } from './time-inputs/time-inputs.component';
+import { ViewButtonComponent } from './view-button/view-button.component';
+import { DateTimeInputComponent } from './date-time-input/date-time-input.component';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +30,9 @@ import { GraphFiltersMenuComponent } from './graph-filters-menu/graph-filters-me
     GraphComponent,
     ButtonMenuComponent,
     GraphFiltersMenuComponent,
+    TimeInputsComponent,
+    ViewButtonComponent,
+    DateTimeInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,8 @@ import { GraphFiltersMenuComponent } from './graph-filters-menu/graph-filters-me
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MomentModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     GraphService,
