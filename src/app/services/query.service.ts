@@ -10,16 +10,16 @@ export class QueryService {
     public endAt: Subject<any> = new Subject<any>();
     public query: any;
 
-    public setGraphRange(start, end){
-        if (start){
+    public setGraphRange(dateTimeString, dateTimeId){
+        if (dateTimeId === "start"){
             this.startAt.next({
                 key:"date",
-                value: start
+                value: dateTimeString
             });
         } else {
             this.endAt.next({
                 key:"date",
-                value: end
+                value: dateTimeString
             });
         }
     }

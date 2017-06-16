@@ -22,7 +22,7 @@ import { GraphFiltersMenuComponent } from './graph-filters-menu/graph-filters-me
 import { TimeInputsComponent } from './time-inputs/time-inputs.component';
 import { ViewButtonComponent } from './view-button/view-button.component';
 import { DateTimeInputComponent } from './date-time-input/date-time-input.component';
-
+import { ViewButtonService } from './services/viewButton.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { DateTimeInputComponent } from './date-time-input/date-time-input.compon
   providers: [
     GraphService,
     QueryService,
-    FiltersService
+    FiltersService,
+    ViewButtonService
     ],
   bootstrap: [AppComponent]
 })

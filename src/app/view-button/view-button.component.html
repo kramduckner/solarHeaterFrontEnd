@@ -1,1 +1,1 @@
-<button (click)="clicked('week')" [style.backgroundColor]="selectedColor" class="btn btn-secondary">{{view}}</button>
+<button (click)="clicked('week')" [ngClass]="{'btn-success':view.isSelected}" class="btn btn-secondary">{{view.viewString}}</button>

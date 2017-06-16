@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
 import * as moment from "moment";
 import { QueryService } from '../services/query.service';
+import { ViewButtonService } from '../services/viewButton.service';
+import { Subject } from "rxjs";
 
 @Component({
   selector: 'view-button',
@@ -9,10 +11,11 @@ import { QueryService } from '../services/query.service';
 })
 export class ViewButtonComponent implements OnInit {
 
-    @Input() view: String;
-    public selectedColor:String;
+    @Input() view: any;
 
+    public isSelected:Boolean;
     private mapView(view:String){
+
         if (view === "day"){
             return moment().startOf('day').format();
         } else if (view === "week"){
@@ -22,18 +25,23 @@ export class ViewButtonComponent implements OnInit {
         }
     }
 
-    public clicked(view:String):void {
+    public clicked():void {
 
-        this.selectedColor = "#5cb85c";
-        this.queryService.setGraphRange(this.mapView(view), null);
-    }
-
-  constructor(public queryService: QueryService) {
-
+        this.viewButtonService.viewButtonClick.next(this.view);
+//        this.queryService.setGraphRange(this.mapView(view), null);
 
     }
 
-  ngOnInit() {
-  }
+  constructor(public queryService: QueryService, public viewButtonService:ViewButtonService) {
 
+    this.viewButtonService.viewButtonClick.subscribe(view=>{
+        if (view === this.view) {
+            this.view.isSelected = true;
+        } else {
+            this.view.isSelected = false;
+        }
+    });
+
+}
+  ngOnInit() {}
 }

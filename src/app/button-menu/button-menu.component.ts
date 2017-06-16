@@ -10,9 +10,14 @@ import { Component, OnInit} from '@angular/core';
 
 export class ButtonMenuComponent implements OnInit {
 
-    public views:Array<String> = ["Day","Week","Month"];
+    public views:Array<Object> = [{viewString:"Day", isSelected:false},{viewString:"Week", isSelected:"true"},{viewString:"Month", isSelected:false}];
+    public handleViewChange(view){
+        view.isSelected = true;
+    }
 
-   constructor() {}
+   constructor() {
+
+    }
 
  ngOnInit(){}
 

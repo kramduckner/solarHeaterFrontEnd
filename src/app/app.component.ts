@@ -3,6 +3,7 @@ import { QueryService } from './services/query.service';
 import { FiltersService } from './services/filters.service';
 import { GraphService } from './services/graph.service';
 import { Observable, Subject } from "rxjs";
+import { ViewButtonService } from "./services/viewButton.service";
 import * as moment from "moment";
 
 @Component({
@@ -14,19 +15,6 @@ export class AppComponent {
 
     readings:any;
     isDataAvailable:boolean;
-    startTime:any;
-    endTime:any;
-    startDate: any;
-    endDate: any;
-
-    private buildMomentFromInputs(updatedDateTime){
-        return moment({
-            month:updatedDateTime.month ? updatedDateTime.month - 1 : this.startDate.month - 1,
-            day:updatedDateTime.day ? updatedDateTime.day : this.startDate.day,
-            hour:updatedDateTime.hour || this.startTime.hour,
-            minute:updatedDateTime.minute || this.startTime.minute
-        }).format();
-    }
 
     private mapView(view:String){
         if (view === "day"){
@@ -38,17 +26,6 @@ export class AppComponent {
         }
     }
 
-    public dateTimeChanged(updatedDateTime, source):void{
-        if (source === "endTime" || source === "endDate"){
-            if (this.endDate && this.endTime){
-                this.queryService.setGraphRange(this.buildMomentFromInputs(updatedDateTime), null);
-            }
-        } else {
-            if (this.startDate && this.startTime){
-                this.queryService.setGraphRange(null,this.buildMomentFromInputs(updatedDateTime));
-            }
-        }
-    }
     // fart: Observable<any>;
     // poop: Subject<any>;
     // addMessageMock: Subject<any>;
@@ -57,27 +34,8 @@ export class AppComponent {
     // messageMock: Array<any>;
     // messagesMock: Observable<any>;
     // test:Observable<any>;
-    public endDateTime:boolean = false;
 
-    public endDateTimeToggle():void{
-        this.endDateTime = !this.endDateTime;
-    }
-
-    constructor(public queryService:QueryService, public filtersService:FiltersService) {
-
-        var startMoment = moment().subtract(1, "weeks");
-
-        this.startTime = {
-            hour:startMoment.get('hour'),
-            minute:startMoment.get('minute'),
-        };
-
-        this.startDate = {
-            day:startMoment.get('date'),
-            //moment 0 indexes the months
-            month:startMoment.get('month') + 1,
-            year:startMoment.get('year')
-        }
+    constructor(public queryService:QueryService, public filtersService:FiltersService, public viewButtonService:ViewButtonService) {
 
         // this.messageMock = [];
         // this.messagesMock = new Observable();
@@ -88,7 +46,7 @@ export class AppComponent {
         // this.messagesMock = this.updateMock
 //        .publishReplay(1)
 //        .refCount();
-
+        //at output is the event emitter
         // this.createMock
         //   .map( function() {
         //     return (message) => {
@@ -133,6 +91,7 @@ export class AppComponent {
     }
 
     ngOnInit(){
-        this.queryService.setGraphRange(this.mapView('week'),null);
+
+        this.queryService.setGraphRange(this.mapView('week'), "start");
     }
  }

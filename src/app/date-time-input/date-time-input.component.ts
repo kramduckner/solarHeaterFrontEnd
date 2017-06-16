@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment';
+import { QueryService } from '../services/query.service';
 
 @Component({
   selector: 'date-time-input',
@@ -7,7 +9,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateTimeInputComponent implements OnInit {
 
-  constructor() { }
+@Input() dateTimeId:String;
+time:any;
+date: any;
+
+public dateTimeChanged(updatedDateTime, source):void{
+
+    this.queryService.setGraphRange(this.buildMomentFromInputs(updatedDateTime), this.dateTimeId);
+    // if (source === "endTime" || source === "endDate"){
+    //     if (this.endDate && this.endTime){
+    //         this.queryService.setGraphRange(this.buildMomentFromInputs(updatedDateTime), null);
+    //     }
+    // } else {
+    //     if (this.startDate && this.startTime){
+    //         this.queryService.setGraphRange(null,this.buildMomentFromInputs(updatedDateTime));
+    //     }
+    // }
+}
+
+private buildMomentFromInputs(updatedDateTime){
+    return moment({
+        month:updatedDateTime.month ? updatedDateTime.month - 1 : this.date.month - 1,
+        day:updatedDateTime.day ? updatedDateTime.day : this.date.day,
+        hour:updatedDateTime.hour || this.time.hour,
+        minute:updatedDateTime.minute || this.time.minute
+    }).format();
+}
+  constructor(public queryService: QueryService) {
+      var startMoment = moment().subtract(1, "weeks");
+
+      this.time = {
+          hour:startMoment.get('hour'),
+          minute:startMoment.get('minute'),
+      };
+
+       this.date = {
+          day:startMoment.get('date'),
+          //moment 0 indexes the months
+          month:startMoment.get('month') + 1,
+          year:startMoment.get('year')
+      }
+
+}
 
   ngOnInit() {
   }

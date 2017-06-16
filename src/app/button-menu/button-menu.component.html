@@ -1,1 +1,1 @@
-<view-button *ngFor="let v of views" [view]="v" ></view-button>
+<view-button (viewButtonClicked)="handleViewChange($event)" *ngFor="let v of views" [view]="v" ></view-button>
