@@ -5,6 +5,7 @@ import { GraphService } from './services/graph.service';
 import { Observable, Subject } from "rxjs";
 import { ViewButtonService } from "./services/viewButton.service";
 import * as moment from "moment";
+//import { GraphDataModel } from "./models/graph.model";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,9 @@ import * as moment from "moment";
 
 export class AppComponent {
 
+//    preFilteredReadings:GraphDataModel[];
     preFilteredReadings:any;
+    //readings:GraphDataModel[];
     readings:any;
     isDataAvailable:boolean;
 
@@ -81,6 +84,7 @@ export class AppComponent {
         // });
 
         this.filtersService.filterStream.subscribe(filter=>{
+
             if (filter.filterSelect === "no filters"){
                 this.readings = this.preFilteredReadings;
                 return;

@@ -1,10 +1,14 @@
-export class GraphModel{
+export class GraphDataModel {
 
-    view:string;
+    airTemp:Number;
+    heaterTemp:Number;
+    dateTime:String;
+    weather:any;
 
-    constructor(view:string){
-
-        this.view = view;
+    constructor(airTemp: Number, heaterTemp:Number, dateTime:String, weather:any) {
+        this.airTemp = airTemp;
+        this.heaterTemp = heaterTemp;
+        this.dateTime = dateTime;
+        this.weather = weather;
     }
-
 }

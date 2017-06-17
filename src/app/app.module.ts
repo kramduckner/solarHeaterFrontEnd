@@ -16,7 +16,6 @@ import { environment } from '../environments/environment';
 import { GraphService } from './services/graph.service';
 import { QueryService } from './services/query.service';
 import { FiltersService } from './services/filters.service';
-import { GraphModel} from './models/graph.model';
 import { ButtonMenuComponent } from './button-menu/button-menu.component';
 import { GraphFiltersMenuComponent } from './graph-filters-menu/graph-filters-menu.component';
 import { TimeInputsComponent } from './time-inputs/time-inputs.component';
@@ -43,13 +42,14 @@ import { ViewButtonService } from './services/viewButton.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
   ],
   providers: [
     GraphService,
     QueryService,
     FiltersService,
-    ViewButtonService
+    ViewButtonService,
+    {provide:"apiUrl", useValue:"https://solarheater-81514.firebaseio.com/temperatureReadings/"}
     ],
   bootstrap: [AppComponent]
 })

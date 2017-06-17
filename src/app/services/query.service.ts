@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Subject } from "rxjs";
 import * as moment from 'moment';
+import { DateTimeModel } from '../models/dateTime.model';
 
 @Injectable()
 export class QueryService {
 
-    public startAt: Subject<any> = new Subject<any>();
-    public endAt: Subject<any> = new Subject<any>();
+    public startAt: Subject<DateTimeModel> = new Subject<DateTimeModel>();
+    public endAt: Subject<DateTimeModel> = new Subject<DateTimeModel>();
+    //lets do this..
     public query: any;
 
     public setGraphRange(dateTimeString, dateTimeId){
@@ -24,8 +26,8 @@ export class QueryService {
         }
     }
 
-    constructor(public db:AngularFireDatabase){
-        this.query = this.db.list('https://solarheater-81514.firebaseio.com/temperatureReadings/', {
+    constructor(public db:AngularFireDatabase, @Inject('apiUrl') public apiUrl: string){
+        this.query = this.db.list(this.apiUrl, {
              query: {
                  startAt:this.startAt,
                  endAt:this.endAt,
