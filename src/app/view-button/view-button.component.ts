@@ -14,11 +14,11 @@ export class ViewButtonComponent implements OnInit {
     @Input() view: any;
 
     public isSelected:Boolean;
-    private mapView(view:String){
 
-        if (view === "day"){
+    private mapView(){
+        if (this.view.viewString === "Day"){
             return moment().startOf('day').format();
-        } else if (view === "week"){
+        } else if (this.view.viewString === "Week"){
             return moment().startOf('week').format();
         } else {
             return moment().startOf('month').format();
@@ -26,10 +26,8 @@ export class ViewButtonComponent implements OnInit {
     }
 
     public clicked():void {
-
         this.viewButtonService.viewButtonClick.next(this.view);
-//        this.queryService.setGraphRange(this.mapView(view), null);
-
+        this.queryService.setGraphRange(this.mapView(), "start");
     }
 
   constructor(public queryService: QueryService, public viewButtonService:ViewButtonService) {

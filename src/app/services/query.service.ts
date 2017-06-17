@@ -28,6 +28,7 @@ export class QueryService {
         this.query = this.db.list('https://solarheater-81514.firebaseio.com/temperatureReadings/', {
              query: {
                  startAt:this.startAt,
+                 endAt:this.endAt,
                  orderByChild:"dateTime"
              }
         });

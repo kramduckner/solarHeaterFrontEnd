@@ -13,6 +13,7 @@ import * as moment from "moment";
 
 export class AppComponent {
 
+    preFilteredReadings:any;
     readings:any;
     isDataAvailable:boolean;
 
@@ -55,12 +56,11 @@ export class AppComponent {
         //   }).subscribe(this.updateMock);
         //
         // this.updateMock.subscribe(value=>console.log(value));
-        //
         // this.addMessageMock.next(['i', 'hate', 'observables']);
 
         this.isDataAvailable = false;
         this.queryService.query.subscribe(readings=>{
-            this.readings = readings;
+            this.readings = this.preFilteredReadings = readings;
             this.isDataAvailable = true;
         });
 
@@ -76,14 +76,18 @@ export class AppComponent {
         // });
         //
         // this.fart.subscribe(value=>console.log(value));
-
-        this.filtersService.filterStream.filter(filter=>{
-            return true;
-        });
+        // this.filtersService.filterStream.filter(filter=>{
+        //     return true;
+        // });
 
         this.filtersService.filterStream.subscribe(filter=>{
+            if (filter.filterSelect === "no filters"){
+                this.readings = this.preFilteredReadings;
+                return;
+            }
+
             this.readings = this.readings.filter(reading=>{
-                if (reading.weather.weather[0].description === filter.filterSelect){
+                if ( (reading.weather.weather[0].description === filter.filterSelect)){
                     return true;
                 }
             });
@@ -91,7 +95,8 @@ export class AppComponent {
     }
 
     ngOnInit(){
-
+        //TODO: this is terrible, needs to be fixed
+        this.queryService.setGraphRange(moment().endOf('day').format(), "end");
         this.queryService.setGraphRange(this.mapView('week'), "start");
     }
  }

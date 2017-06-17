@@ -17,7 +17,8 @@ export class ButtonMenuComponent implements OnInit {
 
    constructor() {
 
-    }
+
+}
 
  ngOnInit(){}
 

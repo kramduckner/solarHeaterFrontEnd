@@ -22,13 +22,18 @@ export class GraphFiltersMenuComponent  {
         });
 
         this.filters = [
-            {string:"moderate rain" , value: "moderate rain"},
-            {string: "light rain", value: "light rain"},
-            {string: "overcast clouds", value:"overcast clouds"},
-            {string: "clear sky", value:"clear sky"},
-            {string: "No Filters", value: "no filters"}
+            {string:"Moderate rain" , value: "moderate rain"},
+            {string: "Light rain", value: "light rain"},
+            {string: "Overcast clouds", value:"overcast clouds"},
+            {string: "Clear sky", value:"clear sky"},
+            {string: "No Filters", value: "no filters"},
+            {string: "Broken clouds", value: "broken clouds"},
+            {string: "Scattered clouds", value: "scattered clouds"},
+            {string: "Mist", value: "mist"},
+            {string: "Few clouds", value: "few clouds"}
         ]
     }
+
     ngOnInit(){
         this.filterForm.valueChanges.subscribe(value => {
             this.filtersService.filterStream.next(value);

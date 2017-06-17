@@ -13,18 +13,8 @@ export class DateTimeInputComponent implements OnInit {
 time:any;
 date: any;
 
-public dateTimeChanged(updatedDateTime, source):void{
-
+public dateTimeChanged(updatedDateTime):void{
     this.queryService.setGraphRange(this.buildMomentFromInputs(updatedDateTime), this.dateTimeId);
-    // if (source === "endTime" || source === "endDate"){
-    //     if (this.endDate && this.endTime){
-    //         this.queryService.setGraphRange(this.buildMomentFromInputs(updatedDateTime), null);
-    //     }
-    // } else {
-    //     if (this.startDate && this.startTime){
-    //         this.queryService.setGraphRange(null,this.buildMomentFromInputs(updatedDateTime));
-    //     }
-    // }
 }
 
 private buildMomentFromInputs(updatedDateTime){
@@ -33,7 +23,7 @@ private buildMomentFromInputs(updatedDateTime){
         day:updatedDateTime.day ? updatedDateTime.day : this.date.day,
         hour:updatedDateTime.hour || this.time.hour,
         minute:updatedDateTime.minute || this.time.minute
-    }).format();
+    }).utc().format();
 }
   constructor(public queryService: QueryService) {
       var startMoment = moment().subtract(1, "weeks");
