@@ -1,4 +1,4 @@
-export class GraphDataModel {
+export class GraphModel {
 
     airTemp:Number;
     heaterTemp:Number;

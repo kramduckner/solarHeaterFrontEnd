@@ -5,7 +5,7 @@ import { GraphService } from './services/graph.service';
 import { Observable, Subject } from "rxjs";
 import { ViewButtonService } from "./services/viewButton.service";
 import * as moment from "moment";
-//import { GraphDataModel } from "./models/graph.model";
+//import { GraphModel } from "./models/graph.model";
 
 @Component({
   selector: 'app-root',

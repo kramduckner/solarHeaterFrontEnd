@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GraphModel } from "../models/graph.model";
 import { Subject } from 'rxjs';
 import { FiltersService } from "../services/filters.service";
 import { QueryService } from "../services/query.service";
