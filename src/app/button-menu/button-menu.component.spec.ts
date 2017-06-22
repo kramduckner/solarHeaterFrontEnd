@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ButtonMenuComponent } from './button-menu.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 
 describe('ButtonMenuComponent', () => {
   let component: ButtonMenuComponent;
@@ -8,7 +8,9 @@ describe('ButtonMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ButtonMenuComponent ]
+      imports:[],
+      declarations: [ ButtonMenuComponent ],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

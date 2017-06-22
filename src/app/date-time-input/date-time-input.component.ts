@@ -27,7 +27,7 @@ private buildMomentFromInputs(updatedDateTime){
 }
   constructor(public queryService: QueryService) {
       var startMoment = moment().subtract(1, "weeks");
-
+      //default values
       this.time = {
           hour:startMoment.get('hour'),
           minute:startMoment.get('minute'),

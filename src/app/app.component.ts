@@ -30,8 +30,8 @@ export class AppComponent {
         }
     }
 
-    // fart: Observable<any>;
-    // poop: Subject<any>;
+    fart: Observable<any>;
+//     poop: Subject<any>;
     // addMessageMock: Subject<any>;
     // createMock: Subject<any>;
     // updateMock: Subject<any>
@@ -62,26 +62,33 @@ export class AppComponent {
         // this.addMessageMock.next(['i', 'hate', 'observables']);
 
         this.isDataAvailable = false;
+        //we subscribe to the observable
         this.queryService.query.subscribe(readings=>{
             this.readings = this.preFilteredReadings = readings;
             this.isDataAvailable = true;
         });
 
-        // this.fart = new Observable(observer => {
-        //         setTimeout(() => {
-        //         observer.next(42);
-        //     }, 1000);
-        //     setTimeout(() => {
-        //         observer.next(43);
-        //     }, 2000);
-        // }).scan(function(acc, x, i ){
-        //     return x;
-        // });
+        this.fart = new Observable(observer => {
+                setTimeout(() => {
+                observer.next({blah: 'fart'});
+            }, 1000);
+            setTimeout(() => {
+                observer.next(43);
+            }, 2000);
+        });
+
+        // this.poop = new Subject();
+        // this.fart.subscribe(this.poop);
         //
-        // this.fart.subscribe(value=>console.log(value));
-        // this.filtersService.filterStream.filter(filter=>{
-        //     return true;
-        // });
+        // this.poop.subscribe(value=>console.log(value));
+
+        // setTimeout(()=>{
+        //     this.poop.next('fart')
+        // }, 3000)
+
+        this.filtersService.filterStream.filter(filter=>{
+            return true;
+        });
 
         this.filtersService.filterStream.subscribe(filter=>{
 
@@ -100,7 +107,7 @@ export class AppComponent {
 
     ngOnInit(){
         //TODO: this is terrible, needs to be fixed
-        this.queryService.setGraphRange(moment().endOf('day').format(), "end");
-        this.queryService.setGraphRange(this.mapView('week'), "start");
+        this.queryService.setGraphRange( ( moment().endOf('day').format() ), "end");
+        this.queryService.setGraphRange( ( this.mapView('week') ), "start");
     }
  }

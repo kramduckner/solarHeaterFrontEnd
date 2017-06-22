@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
+import { ButtonMenuComponent } from './button-menu/button-menu.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -16,7 +18,6 @@ import { environment } from '../environments/environment';
 import { GraphService } from './services/graph.service';
 import { QueryService } from './services/query.service';
 import { FiltersService } from './services/filters.service';
-import { ButtonMenuComponent } from './button-menu/button-menu.component';
 import { GraphFiltersMenuComponent } from './graph-filters-menu/graph-filters-menu.component';
 import { TimeInputsComponent } from './time-inputs/time-inputs.component';
 import { ViewButtonComponent } from './view-button/view-button.component';
@@ -44,6 +45,7 @@ import { ViewButtonService } from './services/viewButton.service';
     ReactiveFormsModule,
     NgbModule.forRoot(),
   ],
+  schemas:[ NO_ERRORS_SCHEMA],
   providers: [
     GraphService,
     QueryService,

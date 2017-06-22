@@ -9,7 +9,6 @@ export class QueryService {
 
     public startAt: Subject<DateTimeModel> = new Subject<DateTimeModel>();
     public endAt: Subject<DateTimeModel> = new Subject<DateTimeModel>();
-    //lets do this..
     public query: any;
 
     public setGraphRange(dateTimeString, dateTimeId){
@@ -36,6 +35,7 @@ export class QueryService {
         });
     }
 }
+
  export const userServiceInjectables: Array<any> = [
      QueryService
  ];
