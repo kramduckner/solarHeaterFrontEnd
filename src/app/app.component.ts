@@ -5,6 +5,8 @@ import { GraphService } from './services/graph.service';
 import { Observable, Subject } from "rxjs";
 import { ViewButtonService } from "./services/viewButton.service";
 import * as moment from "moment";
+import _ from "lodash";
+
 //import { GraphModel } from "./models/graph.model";
 
 @Component({
@@ -40,6 +42,20 @@ export class AppComponent {
     // test:Observable<any>;
 
     constructor(public queryService:QueryService, public filtersService:FiltersService, public viewButtonService:ViewButtonService) {
+
+            let dragons = [
+                    {name:"flyffykins", element:"lightning"},
+                    {name:"karo", element:"timewarp"}
+            ]
+
+            let hasElement =
+                    _.curry((element, obj) => obj.element === element)
+
+            let lightningDragons =
+                    dragons.filter(hasElement('lightning'));
+
+
+
 
         // this.messageMock = [];
         // this.messagesMock = new Observable();
