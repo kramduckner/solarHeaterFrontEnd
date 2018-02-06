@@ -15,7 +15,9 @@ export class ButtonMenuComponent implements OnInit {
         view.isSelected = true;
     }
 
-   constructor() {}
+   constructor() {
+       console.log("can you see me?");
+   }
 
     ngOnInit(){}
 
